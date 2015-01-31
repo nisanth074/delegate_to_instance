@@ -55,7 +55,7 @@ end
 
 ## Why
 
-I often write single purpose objects, like
+When I write single purpose objects, like
 ```ruby
 class HTMLSanitizer
   def self.sanitize(html)
@@ -71,7 +71,7 @@ class HTMLSanitizer
   end
 end
 ```
-and often find myself having to write a class level delegator (and corresponding tests for it)
+I often find myself writing a class level delegator (and corresponding tests for it)
 ```ruby
 class HTMLSanitizer
   def self.sanitize(html)
