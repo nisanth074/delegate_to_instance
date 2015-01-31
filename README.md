@@ -20,11 +20,12 @@ Or install it yourself as:
 
 ## Usage
 
-Write
+Instead of
 ```ruby
 class SendInvoiceJob
-  extend DelegateToInstance
-  delegate_to_instance :perform
+  def self.perform(invoice_id, recipients)
+    new(invoice_id, recipients).perform
+  end
   
   def initialize(invoice_id, recipients)
     @invoice_id, @recipients = invoice_id, recipients
@@ -35,13 +36,11 @@ class SendInvoiceJob
   end
 end
 ```
-
-instead of
+just write
 ```ruby
 class SendInvoiceJob
-  def self.perform(invoice_id, recipients)
-    new(invoice_id, recipients).perform
-  end
+  extend DelegateToInstance
+  delegate_to_instance :perform
   
   def initialize(invoice_id, recipients)
     @invoice_id, @recipients = invoice_id, recipients
