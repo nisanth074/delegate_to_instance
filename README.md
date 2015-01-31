@@ -1,6 +1,6 @@
-# DelegateToInstance
+# delegate_to_instance
 
-TODO: Write a gem description
+Helper for single purpose objects
 
 ## Installation
 
@@ -20,12 +20,72 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Write
+```ruby
+class SendInvoiceJob
+  extend DelegateToInstance
+  delegate_to_instance :perform
+  
+  def initialize(invoice_id, recipients)
+    @invoice_id, @recipients = invoice_id, recipients
+  end
+  
+  def perform
+    send_invoice(invoice_id, recipients)
+  end
+end
+```
 
-## Contributing
+instead of
+```ruby
+class SendInvoiceJob
+  def self.perform(invoice_id, recipients)
+    new(invoice_id, recipients).perform
+  end
+  
+  def initialize(invoice_id, recipients)
+    @invoice_id, @recipients = invoice_id, recipients
+  end
+  
+  def perform
+    send_invoice(invoice_id, recipients)
+  end
+end
+```
 
-1. Fork it ( https://github.com/[my-github-username]/delegate_to_instance/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+## Why
+
+I often write single purpose objects, like
+```ruby
+class HTMLSanitizer
+  def self.sanitize(html)
+    new(html).sanitize
+  end
+  
+  def initialize(html)
+    @html = html
+  end
+  
+  def sanitize
+    sanitize_html(html)
+  end
+end
+```
+and often find myself having to write a class level delegator (and corresponding tests for it)
+```ruby
+class HTMLSanitizer
+  def self.sanitize(html)
+    new(html).sanitize
+  end
+
+  # ...
+```
+
+Instead, just write
+```ruby
+class HTMLSanitizer
+  include DelegateToInstance
+  delegate_to_instance :sanitize
+  
+  # ...
+```
