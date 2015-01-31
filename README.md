@@ -89,3 +89,7 @@ class HTMLSanitizer
   
   # ...
 ```
+
+## TODO
+
+1. Add a RSpec matcher
