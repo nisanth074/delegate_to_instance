@@ -1,5 +1,7 @@
 require "delegate_to_instance/version"
 
 module DelegateToInstance
-  # Your code goes here...
+  def self.yay
+    'Yay, RSpec works!'
+  end
 end
