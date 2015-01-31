@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Nisanth Chunduru"]
   spec.email         = ["nisanth074@gmail.com"]
   spec.summary       = 'Helper for single purpose objects'
-  spec.homepage      = ""
+  spec.homepage      = 'https://github.com/nisanth074/delegate_to_instance'
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
