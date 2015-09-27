@@ -2,22 +2,6 @@
 
 Helper for single purpose objects
 
-## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'delegate_to_instance'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install delegate_to_instance
-
 ## Usage
 
 Instead of
@@ -88,6 +72,22 @@ class HTMLSanitizer
   
   # ...
 ```
+
+## Installation
+
+Add this line to your application's Gemfile:
+
+```ruby
+gem 'delegate_to_instance'
+```
+
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install delegate_to_instance
 
 ## TODO
 
